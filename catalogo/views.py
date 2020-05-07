@@ -2,15 +2,18 @@ from django.shortcuts import render
 from django.views import generic
 from catalogo.models import Book, Author, Genre, Format
 import django_filters
+from django.http import HttpResponse
 
 
 def index(request):
 
     num_books = Book.objects.all().count()
-    num_authors = Author.objects.count()
+    books = Book.objects.all()
+    myFilter = BookFilter(request.GET, queryset=books)
     context = {
         'num_books': num_books,
-        'num_authors': num_authors,
+        'books': books,
+        'myFilter': myFilter,
     }
     return render(request, 'index.html', context=context)
 
