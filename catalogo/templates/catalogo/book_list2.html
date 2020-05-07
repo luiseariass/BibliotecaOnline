@@ -1,0 +1,50 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+	<br>
+
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+
+			<form method="get">
+				{{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Buscar</button>
+		  </form>
+
+		</div>
+	</div>
+	
+</div>
+<br>
+
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Título</th>
+					<th>Autor</th>
+					<th>Género</th>
+					<th>Formato</th>
+					<th>Archivo</th>
+
+				{% for obj in books %}
+
+				<tr>
+					<td><a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a></td>
+					<td><a href="{{ obj.author.get_absolute_url }}">{{ obj.author.name }}</a> </td>
+					<td> {{obj.genre.all|join:", "}}</td>
+					<td>{{obj.format}}</td>
+					<td><a class="btn btn-sm btn-info" href="obj.file.url"> Descargar </a></td>
+				</tr>
+				{% endfor %}
+
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
