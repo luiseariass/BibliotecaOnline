@@ -1,15 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from catalogo.models import Book, Author, Genre, Format
 import django_filters
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 
 
 def index(request):
 
     num_books = Book.objects.all().count()
     books = Book.objects.all()
-    myFilter = BookFilter(request.GET, queryset=books)
+    myFilter = BookFilter()
+    if request.method == 'POST':
+        print("entre aqui")
+        myFilter = BookFilter(request.POST, queryset=books)
+        if myFilter.form.is_valid():
+            title = request.POST.get('title', False)
+            author = request.POST.get('author__name', False)
+            format= request.POST.get('format', False)
+            url = f"http://127.0.0.1:8000/catalogo/books/?title={title}&author__name={author}&format={format}"
+            print(url)
+            return redirect(url)
+
     context = {
         'num_books': num_books,
         'books': books,
@@ -53,8 +65,11 @@ class BookFilter(django_filters.FilterSet):
 
 
 def book_list(request):
+    print('entre a book_list')
     books = Book.objects.all()
     myFilter = BookFilter(request.GET, queryset=books)
     books = myFilter.qs
     context = {'myFilter': myFilter, 'books': books}
     return render(request, 'catalogo/book_list2.html', context)
+
+

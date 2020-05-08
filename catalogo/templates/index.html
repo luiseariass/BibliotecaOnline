@@ -8,9 +8,9 @@
 	<div class="col">
 		<div class="card card-body">
 
-			<form method="POST" action="{% url 'book_list'%}"> 
+			<form  method="POST" > 
+				{%csrf_token%}
 				{{myFilter.form}}
-
 		    <button class="btn btn-info" type="submit">Buscar</button>
 		  </form>
 
