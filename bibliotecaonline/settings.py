@@ -20,7 +20,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'wkp)es__q5a2wj0*_6m%z6e)t5trurmrc#gl)w%+bx6^7qt3k*'
+#SECRET_KEY = 'wkp)es__q5a2wj0*_6m%z6e)t5trurmrc#gl)w%+bx6^7qt3k*'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'wkp)es__q5a2wj0*_6m%z6e)t5trurmrc#gl)w%+bx6^7qt3k*')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -121,4 +122,4 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = '/home/guilleamoran/Desktop/GoogleKey.json'
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = 'D:/Github/GoogleKey.json'
