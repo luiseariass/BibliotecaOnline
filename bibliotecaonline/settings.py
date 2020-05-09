@@ -20,12 +20,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'wkp)es__q5a2wj0*_6m%z6e)t5trurmrc#gl)w%+bx6^7qt3k*'
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'wkp)es__q5a2wj0*_6m%z6e)t5trurmrc#gl)w%+bx6^7qt3k*')
+SECRET_KEY = 'wkp)es__q5a2wj0*_6m%z6e)t5trurmrc#gl)w%+bx6^7qt3k*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = bool( os.environ.get('DJANGO_DEBUG', True) )
+DEBUG = True
+
 ALLOWED_HOSTS = []
 
 
@@ -44,7 +43,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -120,15 +118,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
-GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = 'D:/Github/GoogleKey.json'
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+GOOGLE_DRIVE_STORAGE_JSON_KEY_FILE = '/home/guilleamoran/Desktop/GoogleKey.json'
